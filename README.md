@@ -18,6 +18,12 @@ The code behind the article. Every claim was checked against GNU tar 1.35 and Py
 | tar, seekable file | 3.0% | 34 ms |
 | zip, which has an index | 0.2% | 3 ms |
 | tar.gz, streaming read | 100% | 180 ms |
-| tar.gz, Python `getmember()` | 200% | 319 ms |
+| tar.gz, `getmember()`, archive compressed by Python's `gzip` | 100% | 139 ms |
+| tar.gz, `getmember()`, archive compressed by the `gzip` CLI | 200% | 319 ms |
+
+The last two rows are byte-identical archives once decompressed. Both make `getmember()` scan
+the whole thing and then seek about 50 KB backwards to the last member; only the one written by
+the `gzip` CLI caused a rewind to offset 0 and a second full decompression. Why that differs is
+not established here.
 
 MIT licensed.

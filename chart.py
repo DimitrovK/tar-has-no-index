@@ -27,9 +27,11 @@ notes=[("#e5484d","size: 11 octal digits, so 8,589,934,591 bytes at most. ustar 
 for i,(c,t) in enumerate(notes):
     y=0.72-i*0.36
     ax.add_patch(P.Rectangle((-4,y-0.1),8,0.2,facecolor=c,edgecolor="none")); ax.text(10,y,t,va="center",fontsize=10)
-ax2=fig.add_axes([0.20,0.07,0.77,0.38])
+ax2=fig.add_axes([0.22,0.07,0.75,0.40])
 rows=[("tar, seekable file",3.0,33.6,"#4a9eff"),("zip (has an index)",0.2,3.3,"#3fb950"),
-      ("tar.gz, streaming read",100.0,180.1,"#f5a524"),("tar.gz, getmember()",200.0,318.9,"#e5484d")]
+      ("tar.gz, streaming read",100.0,180.1,"#f5a524"),
+      ("tar.gz getmember(),\nPython-gzipped",100.0,138.8,"#e58a4d"),
+      ("tar.gz getmember(),\ngzip CLI",200.0,318.9,"#e5484d")]
 for i,(lab,pct,ms,c) in enumerate(rows):
     ax2.barh(i,pct,color=c,edgecolor="#12141a",lw=1.4,height=.62)
     ax2.text(pct+2.5,i,f"{pct:g}% of the archive, {ms:.0f} ms",va="center",fontsize=10.5)
