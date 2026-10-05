@@ -9,7 +9,8 @@ The code behind the article. Every claim was checked against GNU tar 1.35 and Py
   then lists and extracts
 - `count_reads.py`, `count_gz.py`, `count_stream.py` count the bytes and seeks each approach
   needs to extract the last of 2,000 files
-- `reproduce.sh` reruns the remaining claims in order: the header-only checksum, the 8 GiB
+- `make_many.py` builds the 2,000-file test archives the count scripts read
+- `reproduce.sh` reruns every claim in order: the header-only checksum, the 8 GiB
   ustar limit, non-reproducible archives and the flags that fix them, and append semantics
 
 | extracting the last of 2,000 files | bytes read | time |

@@ -25,3 +25,9 @@ tar --sort=name --mtime='2024-01-01 00:00Z' --owner=0 --group=0 --numeric-owner 
 echo "version 1" > config.txt && tar -cf app.tar config.txt
 echo "version 2" > config.txt && tar -rf app.tar config.txt
 rm config.txt && tar -xf app.tar && cat config.txt              # version 2
+
+# the read-cost comparison: build 2,000 files, then extract the last one each way
+python3 make_many.py
+python3 count_reads.py      # seekable tar vs zip
+python3 count_gz.py         # tar.gz with getmember(): reads it twice for the last file
+python3 count_stream.py     # tar.gz streaming, stop when found
